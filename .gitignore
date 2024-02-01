@@ -1,0 +1,4 @@
+test.py
+.vscode/settings.json
+src/*.eggs-info
+__pycache__
