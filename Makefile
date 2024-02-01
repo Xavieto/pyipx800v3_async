@@ -4,7 +4,7 @@
 
 SHELL=/bin/bash
 PYTHON=python3  # Change this to "python" if you're using Python 2
-PKG_NAME=pyipx800v3-async  # Change to the name of your package
+PKG_NAME=pyipx800v3_async  # Change to the name of your package
 
 default: | clean
 

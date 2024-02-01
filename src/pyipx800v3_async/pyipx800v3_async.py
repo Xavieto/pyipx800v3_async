@@ -1,5 +1,3 @@
-import collections
-
 import asyncio
 import socket
 import json as js
@@ -103,7 +101,7 @@ class IPX800V3:
                     else:
                         content = True
                     response.close()
-                    if not self._request_checkstatus or "product" in content:
+                    if not self._request_checkstatus or response.status == 200:
                         return content
 
                 request_retries -= 1

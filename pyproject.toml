@@ -1,5 +1,5 @@
 [project]
-name = "pyipx800v3-async"
+name = "pyipx800v3_async"
 description = "Asynchronous lib to interact with IPX800v3"
 version = "0.1.0"
 authors = [

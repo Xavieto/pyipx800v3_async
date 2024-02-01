@@ -19,7 +19,7 @@ Installation
 
 .. code-block:: console
 
-    > pip install pyipx800v3-async
+    > pip install pyipx800v3_async
 
 Usage
 -----
@@ -28,13 +28,28 @@ Usage
 
     import asyncio
 
-    from src.pyipx800v3.pyipx800v3 import IPX800V3
+    from pyipx800v3_async import IPX800V3
 
     async def main():
         async with IPX800V3(host="127.0.0.1", port=80, username="username", password="password") as ipx:
             print(await ipx.ping())
 
             data = await ipx.global_get()
+            for output in data:
+                print(await output.status)
+            
+            out1 = ipx.outputs[0]
+            print(out1.id)
+            print(await out1.status)
+            await out1.on()
+            await asyncio.sleep(1)
+            print(await out1.status)
+            await out1.off()
+            await asyncio.sleep(1)
+            print(await out1.status)
+
+            in1 = ipx.inputs[0]
+            print(await in1.status)
 
 Links
 -----
