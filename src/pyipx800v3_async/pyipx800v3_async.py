@@ -46,8 +46,8 @@ class IPX800V3:
             self._session = aiohttp.ClientSession()
             self._close_session = True
 
-        self.outputs = [] #GenericSlice(self, Output, f"/api/xdevices.json", {"cmd": "20"})
-        self.inputs = [] #GenericSlice(self, Input, f"/api/xdevices.json", {"cmd": "10"})
+        self.outputs = []
+        self.inputs = []
 
 
     async def close(self) -> None:

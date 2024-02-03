@@ -3,14 +3,17 @@
 # 2. You have created a .pypirc file with your login credentials for both PyPI and testpypi.python.org (see https://packaging.python.org/distributing/#create-an-account)
 
 SHELL=/bin/bash
-PYTHON=python3  # Change this to "python" if you're using Python 2
+PYTHON=/usr/bin/python3  # Change this to "python" if you're using Python 2
 PKG_NAME=pyipx800v3_async  # Change to the name of your package
 
 default: | clean
 
+install:
+	@${PYTHON} -m pip install --upgrade build twine pip
+
 clean:
 	@echo "Removing the build/ dist/ and *.egg-info/ directories"
-	@rm -rf build dist src/*.egg-info
+	@rm -rf build dist src/*.egg-info src/pyipx800v3_async/__pycache__
 
 build:
 	@echo "Bundling the code"; echo
