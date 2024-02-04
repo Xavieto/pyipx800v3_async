@@ -35,10 +35,9 @@ Usage
             print(await ipx.ping())
 
             data = await ipx.global_get()
-            for output in data:
-                print(await output.status)
+            print(data)
             
-            out1 = ipx.outputs[0]
+            out1 = Output(ipx=ipx, id=1)
             print(out1.id)
             print(await out1.status)
             await out1.on()
@@ -48,7 +47,7 @@ Usage
             await asyncio.sleep(1)
             print(await out1.status)
 
-            in1 = ipx.inputs[0]
+            in1 = Input(ipx=ipx, id=1)
             print(await in1.status)
 
 Links

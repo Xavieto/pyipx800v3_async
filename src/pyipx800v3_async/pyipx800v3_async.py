@@ -12,9 +12,7 @@ from .exceptions import (Ipx800v3CannotConnectError, Ipx800v3InvalidAuthError,
 class IPX800V3:
     """Class representing the IPX800V3 and its "API".
 
-    Attributes:
-        outputs  the physical relays
-        inputs  the physical inputs
+    Attributes: None
     """
 
     def __init__(
@@ -46,9 +44,6 @@ class IPX800V3:
             self._session = aiohttp.ClientSession()
             self._close_session = True
 
-        self.outputs = []
-        self.inputs = []
-
 
     async def close(self) -> None:
         """Close open client session."""
@@ -62,19 +57,10 @@ class IPX800V3:
 
     async def global_get(self) -> dict:
         """Get all values from the IPX800 answer."""
-        values = []
-        data = await self._request(params={"cmd": "20"})
-        for _key in data.keys():
-            if _key == "product":
-                continue
-            self.outputs.append(Output(ipx=self, id=_key[3:]))
-        data = await self._request(params={"cmd": "10"})
-        for _key in data.keys():
-            if _key == "product":
-                continue
-            self.inputs.append(Input(ipx=self, id=_key[2:]))
-        values += self.outputs
-        values += self.inputs
+        values = {}
+        for i in (10, 20):
+            values.update(await self._request(params={"cmd": i}))
+            values.pop("product")
         return values
 
     async def _request(self, url: str = f"/api/xdevices.json", params: dict = {}, json : bool = True):
