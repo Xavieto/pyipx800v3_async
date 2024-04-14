@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Remove strict version for requirements
+
 ## 0.3.0
 
 - Change `global_get` method to store dict of raw value instead of obj.

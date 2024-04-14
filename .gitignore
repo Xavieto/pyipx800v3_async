@@ -3,3 +3,4 @@ test.py
 src/*.egg-info
 __pycache__
 dist/
+.vscode-upload.json
