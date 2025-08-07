@@ -116,7 +116,7 @@ class IPX800V3:
 class BaseSwitch(IPX800V3):
     """Base class to abstract switch operations."""
 
-    def __init__(self, ipx, prefix:str, id:int, name:str, cmd:str) -> None:
+    def __init__(self, ipx: IPX800V3, prefix:str, id:int, name:str, cmd:str) -> None:
         super().__init__(host=ipx.host, port=ipx.port, username=ipx._username, password=ipx._password)
         self.id = id
         self._name = name
@@ -162,12 +162,12 @@ class BaseSwitch(IPX800V3):
 
 class Output(BaseSwitch):
     """IPX800v3 output"""
-    def __init__(self, ipx, id: int) -> None:
+    def __init__(self, ipx: IPX800V3, id: int) -> None:
         super().__init__(ipx=ipx, prefix="OUT", id=id, name="output", cmd="20")
 
 class Input(BaseSwitch):
     """ IPX800v3 input"""
-    def __init__(self, ipx, id: int) -> None:
+    def __init__(self, ipx: IPX800V3, id: int) -> None:
         super().__init__(ipx=ipx, prefix='IN', id=id, name="input", cmd="10")
     
     async def on(self):
@@ -178,3 +178,20 @@ class Input(BaseSwitch):
     
     async def toggle(self):
         raise NotImplementedError
+
+
+class Analog(IPX800V3):
+    """ IPX800v3 input"""
+    def __init__(self, ipx: IPX800V3, id: int) -> None:
+        super().__init__(host=ipx.host, port=ipx.port, username=ipx._username, password=ipx._password)
+        self.id = id
+        self._name = "analog"
+        self._cmd = "30"
+        self._prefix = "AN"
+
+    @property
+    async def value(self) -> bool:
+        """Return the current status."""
+        params = {"cmd": self._cmd}
+        response = await self._request(params=params)
+        return float(response[f"{self._prefix}{self.id}"])

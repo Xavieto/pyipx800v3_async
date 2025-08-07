@@ -13,6 +13,7 @@ IPX800V3 features implemented
 
   - outputs (``ipx.outputs[]``)
   - inputs (``ipx.intputs[]``)
+  - analogs (``ipx.analogs[]``)
 
 Installation
 ------------
@@ -49,6 +50,9 @@ Usage
 
             in1 = Input(ipx=ipx, id=1)
             print(await in1.status)
+
+            an1 = Analog(ipx=ipx, id=1)
+            print(await an1.value)
 
 Links
 -----

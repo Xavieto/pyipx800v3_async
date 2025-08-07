@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Add analog inputs #1
+
 ## 0.3.1
 
 - Remove strict version for requirements

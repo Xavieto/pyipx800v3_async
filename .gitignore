@@ -4,3 +4,6 @@ src/*.egg-info
 __pycache__
 dist/
 .vscode-upload.json
+venv
+config.env
+include
