@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Fix Analog status and object
+
 ## 0.4.0
 
 - Add analog inputs #1

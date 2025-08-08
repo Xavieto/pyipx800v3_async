@@ -190,8 +190,14 @@ class Analog(IPX800V3):
         self._prefix = "AN"
 
     @property
-    async def value(self) -> bool:
+    async def status(self) -> bool:
         """Return the current status."""
         params = {"cmd": self._cmd}
         response = await self._request(params=params)
         return float(response[f"{self._prefix}{self.id}"])
+
+    async def __str__(self) -> str:
+        return (
+            f"[IPX800-{self._name}: id={self.id}, "
+            f"status={self.status}]"
+        )
